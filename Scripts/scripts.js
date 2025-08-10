@@ -1,134 +1,34 @@
 gsap.registerPlugin(ScrollTrigger);
 
-//Animaciones para mostrar la información por medio del puglin gsap.
-gsap.utils.toArray(".dondevan").forEach((dondevan, i) => {
-  gsap.fromTo(
-    dondevan,
-    { opacity: 0 },
-    {
-      opacity: 1,
-      duration: 1,
-      delay: i * 0.3,
-      scrollTrigger: {
-        trigger: dondevan,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-      repeat: -1,
-      yoyo: true,
-      repeatDelay: 1,
-    }
-  );
+// Lista de grupos 
+let secciones = [
+  ".dondevan",
+  ".regresan",
+  ".remesas",
+  ".egresos",
+  ".cancilleria",
+  ".testimonios"
+];
+
+// Timeline controlado por scroll
+let tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".scroll-map",
+    start: "top top",
+    end: "+=5000", //Esto se avanza por medio de pixeles durante el scroll
+    scrub: true,   
+    pin: true,     
+    anticipatePin: 1
+  }
 });
 
-//Animaciones de Donde Regresan
-
-gsap.utils.toArray(".regresan").forEach((linea, i) => {
-  gsap.fromTo(
-    linea,
-    { opacity: 0 },
-    {
-      opacity: 1,
-      duration: 1,
-      delay: 2 + i * 0.3,
-      scrollTrigger: {
-        trigger: ".scroll-map",
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-      repeat: -1,
-      yoyo: true,
-      repeatDelay: 1,
-    }
-  );
+// Inicialmente, todas las capas ocultas
+secciones.forEach(clase => {
+  gsap.set(clase, { opacity: 0 });
 });
 
-
-//Animaciones de Remesas
-
-gsap.utils.toArray(".remesas").forEach((linea, i) => {
-  gsap.fromTo(
-    linea,
-    { opacity: 0 },
-    {
-      opacity: 1,
-      duration: 1,
-      delay: 2 + i * 0.3,
-      scrollTrigger: {
-        trigger: ".scroll-map",
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-      repeat: -1,
-      yoyo: true,
-      repeatDelay: 1,
-    }
-  );
-});
-
-// Animaciones de Egresos
-
-gsap.utils.toArray(".egresos").forEach((linea, i) => {
-  gsap.fromTo(
-    linea,
-    { opacity: 0 },
-    {
-      opacity: 1,
-      duration: 1,
-      delay: 2 + i * 0.3,
-      scrollTrigger: {
-        trigger: ".scroll-map",
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-      repeat: -1,
-      yoyo: true,
-      repeatDelay: 1,
-    }
-  );
-});
-
-
-//Animaciones de Cancilleria 
-
-gsap.utils.toArray(".cancilleria").forEach((linea, i) => {
-  gsap.fromTo(
-    linea,
-    { opacity: 0 },
-    {
-      opacity: 1,
-      duration: 1,
-      delay: 2 + i * 0.3,
-      scrollTrigger: {
-        trigger: ".scroll-map",
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-      repeat: -1,
-      yoyo: true,
-      repeatDelay: 1,
-    }
-  );
-});
-
-//Animaciones de Testimonios 
-
-gsap.utils.toArray(".testimonios").forEach((linea, i) => {
-  gsap.fromTo(
-    linea,
-    { opacity: 0 },
-    {
-      opacity: 1,
-      duration: 1,
-      delay: 2 + i * 0.3,
-      scrollTrigger: {
-        trigger: ".scroll-map",
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-      repeat: -1,
-      yoyo: true,
-      repeatDelay: 1,
-    }
-  );
+// Mostrar cada grupo de capas uno a uno
+secciones.forEach((clase, i) => {
+  tl.to(clase, { opacity: 1, duration: 1 })     // Aparece
+    .to(clase, { opacity: 0, duration: 1 }, "+=1"); // Desaparece antes del siguiente
 });

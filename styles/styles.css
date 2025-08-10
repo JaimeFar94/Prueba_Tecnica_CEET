@@ -1,14 +1,20 @@
+/* Documentación de estilos */
+
+/*Estilos del cuerpo de html y estilo de letra*/
 body {
   margin: 0;
-  font-family: "nombre-tipografia-de-typekit";
+  font-family: "ff-meta-web-pro";
   background: #182c46;
 
 }
 
+/*Color de encabezado del scroll*/
 h1{
     color:white
 }
 
+
+/*Ubicacion de cada uno de los elementos SVG*/
 .intro, .mapa-scroll, .nota-final {
   min-height: 100vh;
   display: flex;
@@ -16,12 +22,15 @@ h1{
   justify-content: center;
 }
 
+/*Posición del mapa devido a que se utilizo por medio de secciones*/
 .map-container {
     position: relative; 
     max-width: 100%;
     max-height: 100vh;
 }
 
+
+/* Se sobre ponen todos los elementos SVG sobre el mapa donde se posiciona de forma absoluta respecto al elemento contenedor */
 .dondevan {
     position: absolute;
     top: 0;
